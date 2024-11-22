@@ -1,58 +1,109 @@
-import { Injectable, Logger, UnauthorizedException } from '@nestjs/common';
+import { ConflictException, Injectable, Logger, UnauthorizedException } from '@nestjs/common';
 import { LoginDto, RegisterDto } from '@auth/dto';
 import { UserService } from '@user/user.service';
-import { Tokens } from '@auth/interfaces';
+import { Tokens } from './interfaces';
 import { compareSync } from 'bcrypt';
 import { Token, User } from '@prisma/client';
 import { JwtService } from '@nestjs/jwt';
-import { PrismaService } from '../prisma/prisma.service';
 import { v4 } from 'uuid';
 import { add } from 'date-fns';
+import { PrismaService } from '../prisma/prisma.service';
 
 @Injectable()
 export class AuthService {
     private readonly logger = new Logger(AuthService.name);
+
     constructor(
         private readonly userService: UserService,
         private readonly jwtService: JwtService,
         private readonly prismaService: PrismaService,
     ) {}
 
-    async register(registerDto: RegisterDto) {
-        return this.userService.save(registerDto).catch((err) => {
-            this.logger.error(err);
+    async register(dto: RegisterDto) {
+        const user: User = await this.userService.findOne(dto.email).catch((err) => {
+            this.logger.error('Error finding user during registration:', err);
             return null;
         });
+
+        if (user) {
+            throw new ConflictException('Пользователь с таким email уже зарегистрирован');
+        }
+
+        try {
+            return await this.userService.save(dto);
+        } catch (err) {
+            this.logger.error('Error saving user during registration:', err);
+            throw new ConflictException('Ошибка регистрации');
+        }
     }
 
-    async login(loginDto: LoginDto): Promise<Tokens> {
-        const user: User = await this.userService.findOne(loginDto.email).catch((err) => {
-            this.logger.error(err);
+    async login(dto: LoginDto, agent: string): Promise<Tokens> {
+        const user: User = await this.userService.findOne(dto.email).catch((err) => {
+            this.logger.error('Error finding user during login:', err);
             return null;
         });
 
-        if (!user || !compareSync(loginDto.password, user.password)) {
+        if (!user || !compareSync(dto.password, user.password)) {
             throw new UnauthorizedException('Неверный логин или пароль');
         }
 
-        const accessToken = this.jwtService.sign({
-            id: user.id,
-            email: user.id,
-            roles: user.roles,
+        return this.generateTokens(user, agent);
+    }
+
+    async getRefreshToken(userId: string, agent: string): Promise<Token> {
+        const _token = await this.prismaService.token.findFirst({
+            where: { userId, userAgent: agent },
         });
 
-        const refreshToken = await this.getRefreshToken(user.id);
+        const token = _token?.token ?? '';
+
+        return this.prismaService.token.upsert({
+            where: { token },
+            update: { token: v4(), exp: add(new Date(), { months: 1 }) },
+            create: {
+                token: v4(),
+                exp: add(new Date(), { months: 1 }),
+                userId,
+                userAgent: agent,
+            },
+        });
+    }
+
+    async refreshTokens(refreshToken: string, agent: string): Promise<Tokens> {
+        const token = await this.prismaService.token.delete({
+            where: { token: refreshToken },
+        });
+
+        if (!token) {
+            throw new UnauthorizedException();
+        }
+
+        await this.prismaService.token.delete({ where: { token: refreshToken } });
+
+        if (new Date(token.exp) < new Date()) {
+            throw new UnauthorizedException();
+        }
+
+        const user = await this.userService.findOne(token.userId);
+
+        return this.generateTokens(user, agent);
+    }
+
+    private async generateTokens(user: User, agent: string): Promise<Tokens> {
+        const accessToken =
+            'Bearer ' +
+            this.jwtService.sign({
+                id: user.id,
+                email: user.email,
+                roles: user.roles,
+            });
+
+        const refreshToken = await this.getRefreshToken(user.id, agent);
 
         return { accessToken, refreshToken };
     }
 
-    private async getRefreshToken(userId: string): Promise<Token> {
-        return this.prismaService.token.create({
-            data: {
-                token: v4(),
-                exp: add(new Date(), { months: 1 }),
-                userId,
-            },
-        });
+    deleteRefreshToken(token: string) {
+        return this.prismaService.token.delete({ where: { token } });
     }
 }
