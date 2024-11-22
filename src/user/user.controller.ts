@@ -6,22 +6,22 @@ export class UserController {
     constructor(private readonly userService: UserService) {}
 
     @Post()
-    createUser(@Body() dto) {
-        return this.userService.save(dto);
+    async createUser(@Body() dto) {
+        return await this.userService.save(dto);
     }
 
     @Get()
-    findAll() {
-        return this.userService.findAll();
+    async findAll() {
+        return await this.userService.findAll();
     }
 
     @Get(':idOrEmail')
-    findOneUser(@Param('idOrEmail') idOrEmail: string) {
-        return this.userService.findOne(idOrEmail);
+    async findOneUser(@Param('idOrEmail') idOrEmail: string) {
+        return await this.userService.findOne(idOrEmail);
     }
 
     @Delete(':id')
-    deleteUser(@Param('id', ParseUUIDPipe) id: string) {
-        return this.userService.delete(id);
+    async deleteUser(@Param('id', ParseUUIDPipe) id: string) {
+        return await this.userService.delete(id);
     }
 }
