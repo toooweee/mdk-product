@@ -5,17 +5,12 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="17de6ec3-2b05-497f-9307-d55b9e328fe5" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/server/libs/common/src/decorators/public-decorator.ts" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/server/src/auth/guards/index.ts" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/server/src/auth/guards/jwt-auth.guard.ts" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/server/src/auth/strategies/index.ts" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/server/src/auth/strategies/jwt-strategy.ts" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/server/src/user/responses/index.ts" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/server/src/user/responses/user-response.ts" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/server/libs/common/src/decorators/index.ts" beforeDir="false" afterPath="$PROJECT_DIR$/server/libs/common/src/decorators/index.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/server/src/app.module.ts" beforeDir="false" afterPath="$PROJECT_DIR$/server/src/app.module.ts" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/server/src/auth/auth.controller.ts" beforeDir="false" afterPath="$PROJECT_DIR$/server/src/auth/auth.controller.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/server/src/auth/auth.module.ts" beforeDir="false" afterPath="$PROJECT_DIR$/server/src/auth/auth.module.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/server/src/auth/interfaces.ts" beforeDir="false" afterPath="$PROJECT_DIR$/server/src/auth/interfaces.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/server/src/user/user.controller.ts" beforeDir="false" afterPath="$PROJECT_DIR$/server/src/user/user.controller.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/server/src/user/user.service.ts" beforeDir="false" afterPath="$PROJECT_DIR$/server/src/user/user.service.ts" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -26,6 +21,7 @@
     <option name="RECENT_TEMPLATES">
       <list>
         <option value="TypeScript File" />
+        <option value="tsconfig.json" />
       </list>
     </option>
   </component>
@@ -91,7 +87,7 @@
       <option name="presentableId" value="Default" />
       <updated>1732284501891</updated>
       <workItem from="1732284503548" duration="9740000" />
-      <workItem from="1732302646827" duration="2859000" />
+      <workItem from="1732302646827" duration="4088000" />
     </task>
     <servers />
   </component>
