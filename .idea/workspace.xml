@@ -5,15 +5,12 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="17de6ec3-2b05-497f-9307-d55b9e328fe5" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/server/libs/common/src/decorators/current-user.decorator.ts" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/server/libs/common/src/decorators/roles.decorator.ts" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/server/src/auth/guards/role.guard.ts" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/server/src/user/dto/register.dto.ts" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/server/src/user/dto/update-user.dto.ts" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/server/libs/common/src/decorators/cookies.decorator.ts" beforeDir="false" afterPath="$PROJECT_DIR$/server/libs/common/src/decorators/cookies.decorator.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/server/libs/common/src/decorators/index.ts" beforeDir="false" afterPath="$PROJECT_DIR$/server/libs/common/src/decorators/index.ts" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/server/prisma/schema.prisma" beforeDir="false" afterPath="$PROJECT_DIR$/server/prisma/schema.prisma" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/server/src/auth/auth.controller.ts" beforeDir="false" afterPath="$PROJECT_DIR$/server/src/auth/auth.controller.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/server/src/auth/guards/index.ts" beforeDir="false" afterPath="$PROJECT_DIR$/server/src/auth/guards/index.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/server/src/user/dto/index.ts" beforeDir="false" afterPath="$PROJECT_DIR$/server/src/user/dto/index.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/server/src/user/responses/user-response.ts" beforeDir="false" afterPath="$PROJECT_DIR$/server/src/user/responses/user-response.ts" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/server/src/user/user.controller.ts" beforeDir="false" afterPath="$PROJECT_DIR$/server/src/user/user.controller.ts" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/server/src/user/user.service.ts" beforeDir="false" afterPath="$PROJECT_DIR$/server/src/user/user.service.ts" afterDir="false" />
     </list>
@@ -25,8 +22,8 @@
   <component name="FileTemplateManagerImpl">
     <option name="RECENT_TEMPLATES">
       <list>
-        <option value="TypeScript File" />
         <option value="tsconfig.json" />
+        <option value="TypeScript File" />
       </list>
     </option>
   </component>
@@ -92,7 +89,7 @@
       <option name="presentableId" value="Default" />
       <updated>1732284501891</updated>
       <workItem from="1732284503548" duration="9740000" />
-      <workItem from="1732302646827" duration="6416000" />
+      <workItem from="1732302646827" duration="9022000" />
     </task>
     <servers />
   </component>

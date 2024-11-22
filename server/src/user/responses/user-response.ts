@@ -6,6 +6,12 @@ export class UserResponse implements User {
     email: string;
 
     @Exclude()
+    name: string;
+
+    @Exclude()
+    surname: string;
+
+    @Exclude()
     password: string;
 
     createdAt: Date;
