@@ -12,8 +12,8 @@ import {
 import { AuthService } from './auth.service';
 import { LoginDto, RegisterDto } from '@auth/dto';
 import { Tokens } from '@auth/interfaces';
-import { Response, Request } from 'express';
-import { Cookie, UserAgent } from '@common/decorators';
+import { Response } from 'express';
+import { Cookie, Public, UserAgent } from '@common/decorators';
 
 const REFRESH_TOKEN = 'refresh_token';
 
@@ -32,6 +32,7 @@ export class AuthController {
         return user;
     }
 
+    @Public()
     @Post('login')
     async login(@Body() dto: LoginDto, @Res() res: Response, @UserAgent() agent: string) {
         const tokens = await this.authService.login(dto, agent);
