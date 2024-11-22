@@ -34,8 +34,6 @@ export class AuthController {
 
     @Post('login')
     async login(@Body() dto: LoginDto, @Res() res: Response, @UserAgent() agent: string) {
-        console.log({ agent });
-
         const tokens = await this.authService.login(dto, agent);
 
         if (!tokens) {
@@ -50,13 +48,10 @@ export class AuthController {
         if (!refreshToken) {
             throw new UnauthorizedException();
         }
-
         const tokens = await this.authService.refreshTokens(refreshToken, agent);
-
         if (!tokens) {
             throw new UnauthorizedException();
         }
-
         this.setRefreshTokenToCookies(tokens, res);
     }
 
