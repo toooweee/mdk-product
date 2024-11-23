@@ -52,7 +52,7 @@ export class AuthService {
         return this.generateTokens(user, agent);
     }
 
-    private async generateTokens(user: User, agent: string): Promise<Tokens> {
+    private async generateTokens(user: User, agent: string) {
         const accessToken =
             'Bearer ' +
             this.jwtService.sign({
@@ -61,7 +61,7 @@ export class AuthService {
                 roles: user.roles,
             });
         const refreshToken = await this.getRefreshToken(user.id, agent);
-        return { accessToken, refreshToken };
+        return { accessToken, refreshToken, user };
     }
 
     async getRefreshToken(userId: string, agent: string): Promise<Token> {

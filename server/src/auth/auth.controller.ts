@@ -20,7 +20,7 @@ import { UserResponse } from '@user/responses';
 import { RolesGuard } from '@auth/guards/role.guard';
 import { Role } from '@prisma/client';
 
-const REFRESH_TOKEN = 'refresh_token';
+const REFRESH_TOKEN = 'token';
 
 @Controller('auth')
 export class AuthController {
@@ -92,6 +92,7 @@ export class AuthController {
             httpOnly: true,
             expires: new Date(tokens.refreshToken.exp),
             secure: false,
+            sameSite: 'lax',
             path: '/',
         });
 
