@@ -1,27 +1,29 @@
-import { useState } from "react";
-import "./App.css";
+import LoginForm from "./components/LoginForm.tsx";
+import { useContext, useEffect } from "react";
+import { Context } from "./main.tsx";
+import { observer } from "mobx-react-lite";
 
 function App() {
-  const [count, setCount] = useState(0);
+  const { store } = useContext(Context);
+  useEffect(() => {
+    if (localStorage.getItem("token")) {
+      store.checkAuth();
+    }
+  }, []);
+
+  if (!store.isAuth) {
+    return <LoginForm />;
+  }
 
   return (
-    <>
-      <h1 className="text-3xl font-bold underline text-center ">
-        Hello world!
+    <div>
+      <h1>
+        {store.isAuth
+          ? `Пользователь авторизован ${store.user.email}`
+          : `АВТОРИЗУЙСЯ`}
       </h1>
-      <div className="card">
-        <button onClick={() => setCount((count) => count + 1)}>
-          count is {count}
-        </button>
-        <p>
-          Edit <code>src/App.tsx</code> and save to test HMR
-        </p>
-      </div>
-      <p className="read-the-docs">
-        Click on the Vite and React logos to learn more
-      </p>
-    </>
+    </div>
   );
 }
 
-export default App;
+export default observer(App);
