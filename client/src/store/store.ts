@@ -3,7 +3,7 @@ import { makeAutoObservable } from "mobx";
 import AuthService from "../services/AuthService.ts";
 import axios from "axios";
 import { AuthResponse } from "../models/response/AuthResponse.ts";
-import { API_URL } from "../http";
+import $api, { API_URL } from "../http";
 
 export default class Store {
   user = {} as IUser;
@@ -47,11 +47,13 @@ export default class Store {
 
   async checkAuth() {
     try {
-      const response = await axios.get<AuthResponse>(`${API_URL}/refresh`, {
+      const response = await $api.get<AuthResponse>(`${API_URL}/auth/refresh`, {
         withCredentials: true,
       });
       console.log(response);
       localStorage.setItem("token", response.data.accessToken);
+      console.log(this.user);
+      console.log(response.data.accessToken);
       this.setAuth(true);
       this.setUser(response.data.user);
     } catch (e) {

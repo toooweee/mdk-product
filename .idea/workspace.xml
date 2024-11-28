@@ -5,25 +5,19 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="17de6ec3-2b05-497f-9307-d55b9e328fe5" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/client/src/components/LoginForm.tsx" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/client/src/http/index.ts" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/client/src/models/IRefreshToken.ts" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/client/src/models/IUser.ts" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/client/src/models/response/AuthResponse.ts" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/client/src/services/AuthService.ts" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/client/src/services/UserService.ts" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/client/src/store/store.ts" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/client/src/components/Header.tsx" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/client/src/components/UsersPage.tsx" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/server/src/prisma/seed.ts" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/client/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/client/package.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/client/src/App.css" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/client/src/App.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/App.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/client/src/assets/react.svg" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/client/src/main.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/main.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/client/src/services/AuthService.ts" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/services/AuthService.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/client/src/store/store.ts" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/store/store.ts" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/client/yarn.lock" beforeDir="false" afterPath="$PROJECT_DIR$/client/yarn.lock" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/server/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/server/package.json" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/server/src/auth/auth.controller.ts" beforeDir="false" afterPath="$PROJECT_DIR$/server/src/auth/auth.controller.ts" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/server/src/auth/auth.service.ts" beforeDir="false" afterPath="$PROJECT_DIR$/server/src/auth/auth.service.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/server/src/main.ts" beforeDir="false" afterPath="$PROJECT_DIR$/server/src/main.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/server/src/user/user.controller.ts" beforeDir="false" afterPath="$PROJECT_DIR$/server/src/user/user.controller.ts" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -50,22 +44,23 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent"><![CDATA[{
-  "keyToString": {
-    "RunOnceActivity.ShowReadmeOnStart": "true",
-    "git-widget-placeholder": "feat-w-auth",
-    "last_opened_file_path": "C:/Users/bypro/Desktop/mdk-product/client/src/services",
-    "node.js.detected.package.eslint": "true",
-    "node.js.detected.package.tslint": "true",
-    "node.js.selected.package.eslint": "(autodetect)",
-    "node.js.selected.package.tslint": "(autodetect)",
-    "nodejs_package_manager_path": "yarn",
-    "prettierjs.PrettierConfiguration.Package": "C:\\Users\\bypro\\Desktop\\mdk-product\\server\\node_modules\\prettier",
-    "settings.editor.selected.configurable": "settings.javascript.prettier",
-    "ts.external.directory.path": "C:\\Users\\bypro\\Desktop\\mdk-product\\server\\node_modules\\typescript\\lib",
-    "vue.rearranger.settings.migration": "true"
+  <component name="PropertiesComponent">{
+  &quot;keyToString&quot;: {
+    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
+    &quot;git-widget-placeholder&quot;: &quot;feat-w-auth&quot;,
+    &quot;last_opened_file_path&quot;: &quot;C:/Users/bypro/Desktop/shop&quot;,
+    &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,
+    &quot;node.js.detected.package.tslint&quot;: &quot;true&quot;,
+    &quot;node.js.selected.package.eslint&quot;: &quot;(autodetect)&quot;,
+    &quot;node.js.selected.package.tslint&quot;: &quot;(autodetect)&quot;,
+    &quot;nodejs_package_manager_path&quot;: &quot;yarn&quot;,
+    &quot;npm.seed.executor&quot;: &quot;Run&quot;,
+    &quot;prettierjs.PrettierConfiguration.Package&quot;: &quot;C:\\Users\\bypro\\Desktop\\mdk-product\\server\\node_modules\\prettier&quot;,
+    &quot;settings.editor.selected.configurable&quot;: &quot;settings.javascript.prettier&quot;,
+    &quot;ts.external.directory.path&quot;: &quot;C:\\Users\\bypro\\Desktop\\mdk-product\\server\\node_modules\\typescript\\lib&quot;,
+    &quot;vue.rearranger.settings.migration&quot;: &quot;true&quot;
   }
-}]]></component>
+}</component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
       <recent name="C:\Users\bypro\Desktop\mdk-product\client\src\services" />
@@ -84,6 +79,21 @@
       </deployment>
       <method v="2" />
     </configuration>
+    <configuration name="seed" type="js.build_tools.npm" temporary="true" nameIsGenerated="true">
+      <package-json value="$PROJECT_DIR$/server/package.json" />
+      <command value="run" />
+      <scripts>
+        <script value="seed" />
+      </scripts>
+      <node-interpreter value="project" />
+      <envs />
+      <method v="2" />
+    </configuration>
+    <recent_temporary>
+      <list>
+        <item itemvalue="npm.seed" />
+      </list>
+    </recent_temporary>
   </component>
   <component name="SharedIndexes">
     <attachedChunks>
@@ -101,7 +111,10 @@
       <option name="presentableId" value="Default" />
       <updated>1732284501891</updated>
       <workItem from="1732284503548" duration="9740000" />
-      <workItem from="1732302646827" duration="17387000" />
+      <workItem from="1732302646827" duration="17465000" />
+      <workItem from="1732320862109" duration="4191000" />
+      <workItem from="1732325234283" duration="10000" />
+      <workItem from="1732812384910" duration="966000" />
     </task>
     <servers />
   </component>

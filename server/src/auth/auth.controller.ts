@@ -52,9 +52,10 @@ export class AuthController {
     }
 
     @Get('refresh')
+    @Public()
     async refreshTokens(@Cookie(REFRESH_TOKEN) refreshToken: string, @Res() res: Response, @UserAgent() agent: string) {
         if (!refreshToken) {
-            res.sendStatus(HttpStatus.OK);
+            throw new BadRequestException('ALO');
             return;
         }
         const tokens = await this.authService.refreshTokens(refreshToken, agent);
@@ -62,17 +63,20 @@ export class AuthController {
         if (!tokens) {
             throw new UnauthorizedException();
         }
+
         this.setRefreshTokenToCookies(tokens, res);
     }
 
     @Post('logout')
+    @Public()
     async logout(@Cookie(REFRESH_TOKEN) refreshToken: string, @Res() res: Response) {
+        console.log('Received refreshToken:', refreshToken); // Лог
         if (!refreshToken) {
             throw new UnauthorizedException();
         }
 
         await this.authService.deleteRefreshToken(refreshToken);
-        res.cookie(REFRESH_TOKEN, '', { httpOnly: true, secure: false, expires: new Date() });
+        res.cookie(REFRESH_TOKEN, '', { httpOnly: true, secure: false, sameSite: 'lax', expires: new Date() });
         res.sendStatus(HttpStatus.OK);
     }
 

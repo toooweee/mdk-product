@@ -3,6 +3,7 @@ import { createRoot } from "react-dom/client";
 import "./index.css";
 import App from "./App.tsx";
 import Store from "./store/store.ts";
+import { BrowserRouter } from "react-router-dom";
 
 interface State {
   store: Store;
@@ -15,13 +16,16 @@ export const Context = createContext<State>({
 });
 
 createRoot(document.getElementById("root")!).render(
-  <Context.Provider
-    value={{
-      store,
-    }}
-  >
-    <StrictMode>
-      <App />
-    </StrictMode>
-  </Context.Provider>,
+  <BrowserRouter>
+    <Context.Provider
+      value={{
+        store,
+      }}
+    >
+      <StrictMode>
+        <App />
+      </StrictMode>
+    </Context.Provider>
+    ,
+  </BrowserRouter>,
 );
