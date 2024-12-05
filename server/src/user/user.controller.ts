@@ -25,8 +25,9 @@ import { UpdateUserDto } from '@user/dto/update-user.dto';
 export class UserController {
     constructor(private readonly userService: UserService) {}
 
+    @UseGuards(RolesGuard)
     @Roles(Role.ADMIN)
-    @Get('clients')
+    @Get()
     async findAllUsers() {
         const users = await this.userService.findAll();
         return users.map((user) => new UserResponse(user));

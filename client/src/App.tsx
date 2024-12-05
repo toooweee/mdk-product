@@ -1,27 +1,51 @@
-import { useState } from "react";
-import "./App.css";
+import React, { useContext, useEffect, useState } from "react";
+import { Context } from "./main.tsx";
+import { observer } from "mobx-react-lite";
+import LoginForm from "./components/LoginForm.tsx";
+import Header from "./components/Header.tsx";
+import { useNavigate } from "react-router-dom";
+import UsersPage from "./components/UsersPage.tsx";
 
 function App() {
-  const [count, setCount] = useState(0);
+  const { store } = useContext(Context);
+  const [isAdmin, setIsAdmin] = useState(false); // Состояние для проверки роли
+  const navigate = useNavigate();
+
+  useEffect(() => {
+    if (localStorage.getItem("token")) {
+      store.checkAuth();
+    }
+  }, []);
+
+  useEffect(() => {
+    // Устанавливаем isAdmin, проверяя роль пользователя
+    if (store.user?.roles?.includes("ADMIN")) {
+      setIsAdmin(true);
+    }
+  }, [store.user]);
+
+  if (!store.isAuth) {
+    return <LoginForm />; // Если не авторизован, показываем форму входа
+  }
 
   return (
-    <>
-      <h1 className="text-3xl font-bold underline text-center ">
-        Hello world!
-      </h1>
-      <div className="card">
-        <button onClick={() => setCount((count) => count + 1)}>
-          count is {count}
-        </button>
-        <p>
-          Edit <code>src/App.tsx</code> and save to test HMR
-        </p>
-      </div>
-      <p className="read-the-docs">
-        Click on the Vite and React logos to learn more
-      </p>
-    </>
+    <div>
+      <Header /> {/* Добавляем компонент Header */}
+      {isAdmin ? (
+        // Если пользователь администратор, показываем страницу пользователей
+        <UsersPage />
+      ) : (
+        // Если не администратор, показываем основной контент
+        <div className="p-8">
+          <h1>
+            {store.isAuth
+              ? `Пользователь авторизован ${store.user.email}`
+              : `АВТОРИЗУЙСЯ`}
+          </h1>
+        </div>
+      )}
+    </div>
   );
 }
 
-export default App;
+export default observer(App);
